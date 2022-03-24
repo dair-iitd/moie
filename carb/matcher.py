@@ -405,5 +405,5 @@ class Matcher:
     # CONSTANTS
     BLEU_THRESHOLD = 0.4
     LEXICAL_THRESHOLD = 0.5 # Note: changing this value didn't change the ordering of the tested systems
-    stopwords = stopwords.words('english') + list(string.punctuation)
+    #stopwords = stopwords.words('english') + list(string.punctuation)
 
