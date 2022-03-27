@@ -1,25 +1,22 @@
-# export PROJECT=moie-313415
-# export ZONE=europe-west4-a
-export TPU_NAME=$2
-export BUCKET=gs://moie_bucket
+MODEL=$1
+TPU_NAME=$2
+INPUT=$3
+OUTPUT=$4
 
-SIZE="base"
-DIR=$1
-TASK=${DIR//\//_}
-PRETRAINED_DIR="gs://t5-data/pretrained_models/mt5/${SIZE}"
-MODEL_DIR="${BUCKET}/models/${DIR}"
+# export BUCKET=gs://moie_bucket
+#  --gcp_project="${PROJECT}" \
+#  --tpu_zone="${ZONE}" \
+#  --t5_tfds_data_dir="${BUCKET}/t5-tfds"
 
-PRETRAINED_STEPS=1000000
-CHECKPOINT_STEPS=$3
-
-INPUT=$4
-OUTPUT=$5
+TASK=$(basename $MODEL) 
+# MODEL_DIR="${BUCKET}/models/${DIR}"
+CHECKPOINT_STEPS=1010000
 
 CUDA_VISIBLE_DEVICES=0 python -m t5.models.mesh_transformer_main \
      --module_import="t5_tasks" \
-     --model_dir="${MODEL_DIR}" \
+     --model_dir="${MODEL}" \
      --gin_file="dataset.gin" \
-     --gin_file="${MODEL_DIR}/operative_config.gin" \
+     --gin_file="${MODEL}/operative_config.gin" \
      --gin_file="infer.gin" \
      --gin_file="beam_search.gin" \
      --gin_param="input_filename = '${INPUT}'"\
@@ -30,9 +27,6 @@ CUDA_VISIBLE_DEVICES=0 python -m t5.models.mesh_transformer_main \
      --gin_param="utils.run.dataset_split = 'test'" \
      --gin_param="utils.run.batch_size=('tokens_per_batch', 24576)" \
      --gin_param="infer_checkpoint_step=${CHECKPOINT_STEPS}" \
-     --tpu="${TPU_NAME}" \
-     --gcp_project="${PROJECT}" \
-     --tpu_zone="${ZONE}" \
-     --t5_tfds_data_dir="${BUCKET}/t5-tfds"
+     --tpu="${TPU_NAME}"
 
-gsutil mv ${BUCKET}/data/${OUTPUT}-${CHECKPOINT_STEPS} ${BUCKET}/data/${OUTPUT}
+mv ${OUTPUT}-${CHECKPOINT_STEPS} ${OUTPUT}

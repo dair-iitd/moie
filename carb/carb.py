@@ -325,8 +325,10 @@ class Benchmark:
 
         print("Num Final Sentences = ", num_final_sentences)
         if len(f1s)>0:
-            return np.round(auc(temp_rec_scores, temp_prec_scores),4), optimal, zero_conf_point
-            # return 0, optimal, zero_conf_point
+            if len(f1s) == 1: # single confidence value for all points, auc of curve is zero
+                return 0, optimal, zero_conf_point
+            else:
+                return np.round(auc(temp_rec_scores, temp_prec_scores),4), optimal, zero_conf_point
         else:
             # When there is no prediction
             return 0, (0,0,0,0), (0,0,0,0)

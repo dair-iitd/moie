@@ -6,7 +6,6 @@ import tensorflow as tf
 import t5.data
 from t5.evaluation import metrics
 
-# DATA_DIR = "gs://danielk-files/data/"
 DATA_DIR = "gs://moie_bucket/data/"
 
 DEFAULT_SPM_PATH = "gs://t5-data/vocabs/mc4.250000.100extra/sentencepiece.model"
@@ -76,18 +75,21 @@ def postprocessor(answer, example=None, is_target=False):
 # )
 
 
-datasets = ['pt/mt5/vanilla', 'pt/mt5/vanilla_d1', 'pt/mt5/vanilla_d2', 'pt/mt5/vanilla_d3', 'pt/mt5/consistent', 'pt/genoie/clp', 'pt/genoie/translate_clp', 'pt/genoie/ctranslate_clp', 'pt/gen2oie_s1/clp', 'pt/gen2oie_s1/translate_clp', 'pt/gen2oie_s1/ctranslate_clp', 'pt/gen2oie_s2/clp', 'pt/gen2oie_s2/translate_clp', 'pt/gen2oie_s2/ctranslate_clp', 'pt/genoie/rerank', 'pt/gen2oie_s1/ctranslate_clp_wopos', 'pt/gen2oie_s1/translate_clp_wopos', 'pt/gen2oie_s1/clp_wopos', 'pt/gen2oie_s2/ctranslate_clp_wopos', 'pt/gen2oie_s2/translate_clp_wopos', 'pt/gen2oie_s2/clp_wopos']
-datasets += ['te/mt5/vanilla', 'te/mt5/consistent', 'te/genoie/clp', 'te/genoie/translate_clp', 'te/genoie/ctranslate_clp', 'te/gen2oie_s1/clp', 'te/gen2oie_s1/translate_clp', 'te/gen2oie_s1/ctranslate_clp', 'te/gen2oie_s2/clp', 'te/gen2oie_s2/translate_clp', 'te/gen2oie_s2/ctranslate_clp', 'te/genoie/rerank', 'te/gen2oie_s1/ctranslate_clp_wopos', 'te/gen2oie_s1/translate_clp_wopos', 'te/gen2oie_s1/clp_wopos', 'te/gen2oie_s2/ctranslate_clp_wopos', 'te/gen2oie_s2/translate_clp_wopos', 'te/gen2oie_s2/clp_wopos']
-datasets += ['hi/gen2oie_s2/ctranslate_clp_wopos', 'hi/gen2oie_s2/translate_clp_wopos', 'hi/gen2oie_s2/clp_wopos', 'hi/gen2oie_s1/ctranslate_clp_wopos']
-datasets += ['es/gen2oie_s2/ctranslate_clp_wopos', 'es/gen2oie_s2/translate_clp_wopos', 'es/gen2oie_s2/clp_wopos', 'es/gen2oie_s1/ctranslate_clp_wopos']
-datasets += ['zh/gen2oie_s2/ctranslate_clp_wopos', 'zh/gen2oie_s2/translate_clp_wopos', 'zh/gen2oie_s2/clp_wopos', 'zh/gen2oie_s1/ctranslate_clp_wopos']
-datasets += ['en/gen2oie_s2/ctranslate_clp_wopos', 'en/gen2oie_s1/ctranslate_clp_wopos']
-datasets += ['pt/mt5/en', 'hi/mt5/en', 'zh/mt5/en', 'te/mt5/en', 'es/mt5/en']
+# datasets = ['pt/mt5/vanilla', 'pt/mt5/consistent', 'pt/genoie/clp', 'pt/genoie/translate_clp', 'pt/genoie/ctranslate_clp', 'pt/gen2oie_s1/clp', 'pt/gen2oie_s1/translate_clp', 'pt/gen2oie_s1/ctranslate_clp', 'pt/gen2oie_s2/clp', 'pt/gen2oie_s2/translate_clp', 'pt/gen2oie_s2/ctranslate_clp', 'pt/genoie/rerank', 'pt/gen2oie_s1/ctranslate_clp_wopos', 'pt/gen2oie_s1/translate_clp_wopos', 'pt/gen2oie_s1/clp_wopos', 'pt/gen2oie_s2/ctranslate_clp_wopos', 'pt/gen2oie_s2/translate_clp_wopos', 'pt/gen2oie_s2/clp_wopos']
+# datasets += ['te/mt5/vanilla', 'te/mt5/consistent', 'te/genoie/clp', 'te/genoie/translate_clp', 'te/genoie/ctranslate_clp', 'te/gen2oie_s1/clp', 'te/gen2oie_s1/translate_clp', 'te/gen2oie_s1/ctranslate_clp', 'te/gen2oie_s2/clp', 'te/gen2oie_s2/translate_clp', 'te/gen2oie_s2/ctranslate_clp', 'te/genoie/rerank', 'te/gen2oie_s1/ctranslate_clp_wopos', 'te/gen2oie_s1/translate_clp_wopos', 'te/gen2oie_s1/clp_wopos', 'te/gen2oie_s2/ctranslate_clp_wopos', 'te/gen2oie_s2/translate_clp_wopos', 'te/gen2oie_s2/clp_wopos']
+# datasets += ['hi/gen2oie_s2/ctranslate_clp_wopos', 'hi/gen2oie_s2/translate_clp_wopos', 'hi/gen2oie_s2/clp_wopos', 'hi/gen2oie_s1/ctranslate_clp_wopos']
+# datasets += ['es/gen2oie_s2/ctranslate_clp_wopos', 'es/gen2oie_s2/translate_clp_wopos', 'es/gen2oie_s2/clp_wopos', 'es/gen2oie_s1/ctranslate_clp_wopos']
+# datasets += ['zh/gen2oie_s2/ctranslate_clp_wopos', 'zh/gen2oie_s2/translate_clp_wopos', 'zh/gen2oie_s2/clp_wopos', 'zh/gen2oie_s1/ctranslate_clp_wopos']
+# datasets += ['en/gen2oie_s2/ctranslate_clp_wopos', 'en/gen2oie_s1/ctranslate_clp_wopos']
+# datasets += ['pt/mt5/en', 'hi/mt5/en', 'zh/mt5/en', 'te/mt5/en', 'es/mt5/en']
+
+datasets = ['hi_gen2oie_s1_aact_moie', 'hi_gen2oie_s2_aact_moie', 'te_gen2oie_s1_aact_moie', 'te_gen2oie_s2_aact_moie']
+datasets += ['es_gen2oie_s1_aact_moie', 'es_gen2oie_s2_aact_moie', 'pt_gen2oie_s1_aact_moie', 'pt_gen2oie_s2_aact_moie']
+datasets += ['zh_gen2oie_s1_aact_moie', 'zh_gen2oie_s2_aact_moie', 'en_gen2oie_s1', 'en_gen2oie_s2']
+
 for dataset in datasets:
-    name = dataset.replace('/', '_') 
-    name = name.replace('-', '_') 
     t5.data.TaskRegistry.add(
-        name,
+        dataset,
         # Supply a function which returns a tf.data.Dataset.
         dataset_fn=functools.partial(dataset_fn, dataset=dataset),
         splits=["train", 'valid', 'test'],

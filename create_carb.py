@@ -111,24 +111,24 @@ def allennlp(sentence, extractions_str, lang):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser('clean input file')
-    parser.add_argument('--fp1', type=str, help='sentences')
-    parser.add_argument('--fp2', type=str, help='predictions')
-    parser.add_argument('--model_type', type=str, required=True, help='model type')
-    parser.add_argument('--data_type', type=str, required=True, help='data type')
+    parser.add_argument('--inp_sentences', type=str, help='sentences')
+    parser.add_argument('--inp_s2_processed', type=str, help='predictions')
+    # parser.add_argument('--model_type', type=str, required=True, help='model type')
+    # parser.add_argument('--data_type', type=str, required=True, help='data type')
     parser.add_argument('--lang', type=str, required=True, help='lang')
-    parser.add_argument('--out', type=str, help='output file')
+    parser.add_argument('--out_carb', type=str, help='output file')
     args = parser.parse_args()
 
     from os.path import expanduser
     home = expanduser("~")
     data_dir = home+"/moie_bucket/data"
   
-    args.fp1 = f"{data_dir}/carb/data/{args.lang}_test.input"
-    args.fp2 = f"{data_dir}/{args.lang}/{args.model_type}/{args.data_type}/test.predicted"
-    args.out = f"{data_dir}/{args.lang}/{args.model_type}/{args.data_type}/test.predicted.allennlp"
-    with open(args.fp1 , 'r') as f1,\
-        open(args.fp2, 'r') as f2,\
-            open(args.out, 'w') as f3:
+    # args.fp1 = f"{data_dir}/carb/data/{args.lang}_test.input"
+    # args.fp2 = f"{data_dir}/{args.lang}/{args.model_type}/{args.data_type}/test.predicted"
+    # args.out = f"{data_dir}/{args.lang}/{args.model_type}/{args.data_type}/test.predicted.allennlp"
+    with open(args.inp_sentences , 'r') as f1,\
+        open(args.inp_s2_processed, 'r') as f2,\
+            open(args.out_carb, 'w') as f3:
             sentences = f1.readlines()
             predictions = f2.readlines()
             assert len(sentences) == len(predictions), ipdb.set_trace()
@@ -137,4 +137,4 @@ if __name__ == '__main__':
                 for ind1 in range(len(out)):
                     # f4.write(sentences[ind].strip() + '\t' + out[ind1].strip() + '\n')
                     f3.write(sentences[ind].strip() + '\t' + out[ind1].strip() + '\t' + '1.0' + '\n')
-    print('Output written to: ', args.out)
+    print('Output written to: ', args.out_carb)
