@@ -1,18 +1,19 @@
 TASK=$1
-DEVICE_NAME=$2
+MODEL_DIR=$2
+DATA_DIR=$3
+DEVICE_NAME=$4
+FINETUNE_STEPS=$5
 
 PRETRAINED_DIR="gs://t5-data/pretrained_models/mt5/base"
-
 PRETRAINED_STEPS=1000000
-FINETUNE_STEPS=$3
 
 if [[ $DEVICE_NAME == gprc* ]] # Can evaluate gen2oie scoring only on TPU
 then
-  #export PROJECT=xxx
+  ## need to set project and zone if not running in colab
+  #export PROJECT=xxx 
   #export ZONE=yyy
   BUCKET=gs://moie_bucket
-  MODEL_DIR="${BUCKET}/models/${TASK}"
-  python -m t5.models.mesh_transformer_main \
+  DATA_DIR="${DATA_DIR}/" python -m t5.models.mesh_transformer_main \
         --module_import="t5_tasks" \
         --tpu="${DEVICE_NAME}" \
         --gcp_project="${PROJECT}" \
@@ -29,8 +30,7 @@ then
         --gin_param="utils.run.init_checkpoint='${PRETRAINED_DIR}/model.ckpt-${PRETRAINED_STEPS}'" \
         --gin_location_prefix="multilingual_t5/gin/"
 else
-  MODEL_DIR="models/${TASK}"
-  CUDA_VISIBLE_DEVICES=${DEVICE_NAME} python -m t5.models.mesh_transformer_main \
+  DATA_DIR="${DATA_DIR}/" CUDA_VISIBLE_DEVICES=${DEVICE_NAME} python -m t5.models.mesh_transformer_main \
         --module_import="t5_tasks" \
         --model_dir="${MODEL_DIR}" \
         --gin_file="dataset.gin" \

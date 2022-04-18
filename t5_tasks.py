@@ -6,8 +6,8 @@ import tensorflow as tf
 import t5.data
 from t5.evaluation import metrics
 
-DATA_DIR = "gs://moie_bucket/data/"
-# DATA_DIR=os.environ['DATA_DIR']
+# DATA_DIR = "gs://moie_bucket/data/"
+DATA_DIR=os.environ['DATA_DIR']
 DEFAULT_SPM_PATH = "gs://t5-data/vocabs/mc4.250000.100extra/sentencepiece.model"
 
 #DEFAULT_VOCAB = sentencepiece_vocabulary.SentencePieceVocabulary(
@@ -78,5 +78,3 @@ for dataset in datasets:
         output_features=DEFAULT_OUTPUT_FEATURES,
         metric_fns=[metrics.squad],
     )
-
-# t5.data.MixtureRegistry.add(f"Portuguese_openIE", [d.replace('/','_') for d in datasets], default_rate=1.0)

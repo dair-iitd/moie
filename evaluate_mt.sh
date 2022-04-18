@@ -16,16 +16,4 @@ python evaluate_predictions.py \
   --eval_metric=translation --bucket_name=moie_bucket --dump
 
 
-# for model in "${models[@]}"; do
-#   for size in "${sizes[@]}"; do
-#   for split in "${splits[@]}"; do
-#       echo "----------------"
-#       echo "* model: ${model}"
-#       echo "* size: ${size}"
-#       echo "* split: ${split}"
-#       python evaluate_predictions.py \
-#           --eval_path=${model}/${size}/${split}_eval \
-#           --eval_metric=translation --bucket_name=moie_bucket --dump
-#     done
-#   done
-# done
+
