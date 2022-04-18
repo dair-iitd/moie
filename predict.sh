@@ -27,7 +27,7 @@ then
 
   mv ${OUTPUT}-${CHECKPOINT_STEPS} ${OUTPUT}
 else # Run on GPU
-  CUDA_VISIBLE_DEVICES=${DEVICE_NAME} python -m t5.models.mesh_transformer_main \
+  DATA_DIR="data/" CUDA_VISIBLE_DEVICES="${DEVICE_NAME}" python -m t5.models.mesh_transformer_main \
       --module_import="t5_tasks" \
       --model_dir="${MODEL}" \
       --gin_file="dataset.gin" \
