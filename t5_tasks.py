@@ -7,7 +7,7 @@ import t5.data
 from t5.evaluation import metrics
 
 DATA_DIR = "gs://moie_bucket/data/"
-
+# DATA_DIR=os.environ['DATA_DIR']
 DEFAULT_SPM_PATH = "gs://t5-data/vocabs/mc4.250000.100extra/sentencepiece.model"
 
 #DEFAULT_VOCAB = sentencepiece_vocabulary.SentencePieceVocabulary(
@@ -60,32 +60,10 @@ def postprocessor(answer, example=None, is_target=False):
         return example["answers"]
     return answer
 
-
-# t5.data.TaskRegistry.add(
-#     f"parsiglue_readingcomprehension",
-#     # Supply a function which returns a tf.data.Dataset.
-#     dataset_fn=functools.partial(dataset_fn, dataset="parsiglue_readingcomprehension"),
-#     splits=["train", "dev", "eval"],
-#     # Supply a function which preprocesses text from the tf.data.Dataset.
-#     text_preprocessor=preprocess,
-#     # Lowercase targets before computing metrics.
-#     postprocess_fn=postprocessor,
-#     output_features=DEFAULT_OUTPUT_FEATURES,
-#     metric_fns=[metrics.squad],
-# )
-
-
-# datasets = ['pt/mt5/vanilla', 'pt/mt5/consistent', 'pt/genoie/clp', 'pt/genoie/translate_clp', 'pt/genoie/ctranslate_clp', 'pt/gen2oie_s1/clp', 'pt/gen2oie_s1/translate_clp', 'pt/gen2oie_s1/ctranslate_clp', 'pt/gen2oie_s2/clp', 'pt/gen2oie_s2/translate_clp', 'pt/gen2oie_s2/ctranslate_clp', 'pt/genoie/rerank', 'pt/gen2oie_s1/ctranslate_clp_wopos', 'pt/gen2oie_s1/translate_clp_wopos', 'pt/gen2oie_s1/clp_wopos', 'pt/gen2oie_s2/ctranslate_clp_wopos', 'pt/gen2oie_s2/translate_clp_wopos', 'pt/gen2oie_s2/clp_wopos']
-# datasets += ['te/mt5/vanilla', 'te/mt5/consistent', 'te/genoie/clp', 'te/genoie/translate_clp', 'te/genoie/ctranslate_clp', 'te/gen2oie_s1/clp', 'te/gen2oie_s1/translate_clp', 'te/gen2oie_s1/ctranslate_clp', 'te/gen2oie_s2/clp', 'te/gen2oie_s2/translate_clp', 'te/gen2oie_s2/ctranslate_clp', 'te/genoie/rerank', 'te/gen2oie_s1/ctranslate_clp_wopos', 'te/gen2oie_s1/translate_clp_wopos', 'te/gen2oie_s1/clp_wopos', 'te/gen2oie_s2/ctranslate_clp_wopos', 'te/gen2oie_s2/translate_clp_wopos', 'te/gen2oie_s2/clp_wopos']
-# datasets += ['hi/gen2oie_s2/ctranslate_clp_wopos', 'hi/gen2oie_s2/translate_clp_wopos', 'hi/gen2oie_s2/clp_wopos', 'hi/gen2oie_s1/ctranslate_clp_wopos']
-# datasets += ['es/gen2oie_s2/ctranslate_clp_wopos', 'es/gen2oie_s2/translate_clp_wopos', 'es/gen2oie_s2/clp_wopos', 'es/gen2oie_s1/ctranslate_clp_wopos']
-# datasets += ['zh/gen2oie_s2/ctranslate_clp_wopos', 'zh/gen2oie_s2/translate_clp_wopos', 'zh/gen2oie_s2/clp_wopos', 'zh/gen2oie_s1/ctranslate_clp_wopos']
-# datasets += ['en/gen2oie_s2/ctranslate_clp_wopos', 'en/gen2oie_s1/ctranslate_clp_wopos']
-# datasets += ['pt/mt5/en', 'hi/mt5/en', 'zh/mt5/en', 'te/mt5/en', 'es/mt5/en']
-
 datasets = ['hi_gen2oie_s1_aact_moie', 'hi_gen2oie_s2_aact_moie', 'te_gen2oie_s1_aact_moie', 'te_gen2oie_s2_aact_moie']
 datasets += ['es_gen2oie_s1_aact_moie', 'es_gen2oie_s2_aact_moie', 'pt_gen2oie_s1_aact_moie', 'pt_gen2oie_s2_aact_moie']
 datasets += ['zh_gen2oie_s1_aact_moie', 'zh_gen2oie_s2_aact_moie', 'en_gen2oie_s1', 'en_gen2oie_s2']
+# datasets += ['pt/mt5/en', 'hi/mt5/en', 'zh/mt5/en', 'te/mt5/en', 'es/mt5/en']
 
 for dataset in datasets:
     t5.data.TaskRegistry.add(
@@ -101,4 +79,4 @@ for dataset in datasets:
         metric_fns=[metrics.squad],
     )
 
-t5.data.MixtureRegistry.add(f"Portuguese_openIE", [d.replace('/','_') for d in datasets], default_rate=1.0)
+# t5.data.MixtureRegistry.add(f"Portuguese_openIE", [d.replace('/','_') for d in datasets], default_rate=1.0)
