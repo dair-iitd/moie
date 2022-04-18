@@ -29,8 +29,8 @@ then
   bash score.sh ${MODEL_S2} ${DEVICE} ${OUTPUT}.scores_input ${OUTPUT}.scores_output_corr_tags
   paste ${OUTPUT}.scores_input ${OUTPUT}.scores_output ${OUTPUT}.scores_output_corr_tags.scores > ${OUTPUT}.carb
 else
-  cd label_rescore
-  bash label_rescore.sh ../${OUTPUT}.pre_score_carb ../${MODEL_RESCORE} 
+  cd rescore
+  bash label_rescore.sh ../${MODEL_RESCORE} ../${OUTPUT}.pre_score_carb 
   mv ../${OUTPUT}.pre_score_carb.carb ../${OUTPUT}.carb
   cd ..
 fi
