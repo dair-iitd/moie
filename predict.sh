@@ -45,6 +45,7 @@ else # Run on GPU
       --gin_param="infer_checkpoint_step=${CHECKPOINT_STEPS}"
 
   mv ${OUTPUT}-${CHECKPOINT_STEPS} ${OUTPUT}
-  awk '{print substr($0,3)}' ${OUTPUT} > tmp && mv tmp ${OUTPUT}
-  awk '{print substr($0, 1, length($0)-1)}' ${OUTPUT} > tmp && mv tmp ${OUTPUT}
+  python decode_file.py ${OUTPUT}
+  # awk '{print substr($0,3)}' ${OUTPUT} > tmp && mv tmp ${OUTPUT}
+  # awk '{print substr($0, 1, length($0)-1)}' ${OUTPUT} > tmp && mv tmp ${OUTPUT}
 fi
