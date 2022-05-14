@@ -380,8 +380,8 @@ class Conjunction():
 class Carb():
     def __init__(self, hparams, mapping=None):
         super(Carb, self).__init__()
-        self._dev_benchmark = Benchmark('../carb/data/gold/dev.tsv')
-        self._test_benchmark = Benchmark('../carb/data/gold/test.tsv')
+        self._dev_benchmark = Benchmark('../carb/data/gold/en_test.tsv')
+        self._test_benchmark = Benchmark('../carb/data/gold/en_test.tsv')
         self.matchingFunc = Matcher.binary_linient_tuple_match
         self._all_predictions, self._all_pos_words, self._all_verb_words = {}, {}, {}
         self.score = {'carb_auc': 0.0, 'carb_f1': 0.0, 'carb_sum': 0.0}
