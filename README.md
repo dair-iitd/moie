@@ -1,6 +1,6 @@
 # Multilingual Open Information Extraction
 
-The repository contains the code for the ACL'22 paper: Alignment-Augmented Consistent Translation for Multilingual Open Information Extraction [link](link_to_be_updated)
+The repository contains the code for the ACL'22 paper: Alignment-Augmented Consistent Translation for Multilingual Open Information Extraction [link](https://aclanthology.org/2022.acl-long.179/)
 
 Please cite the work if it helps you in your research!
 ```
@@ -15,4 +15,7 @@ Please cite the work if it helps you in your research!
 }
 ```
 
-Code and Data coming soon!
+We have a Colab script that includes the commands for running inference on pre-trained models and training the models from scratch.
+The Colab link will be visible after submitting this form: [Google Form](https://forms.gle/z8HETfUgbbwAQBFZ6).
+It is a very light-weight form that will help us guide future improvements to the system. 
+Your cooperation is highly appreciated!
