@@ -15,14 +15,19 @@ Please cite the work if it helps you in your research!
 }
 ```
 
-We have a Colab script that includes the commands for running inference on pre-trained models and training the models from scratch.
+## Training and Inference with the Gen2OIE model 
+
+We have a Colab script that includes the commands for running inference on trained models that replicates the results reported in the paper and training the models from scratch.
 The Colab link will be visible after submitting this form: [Google Form](https://forms.gle/z8HETfUgbbwAQBFZ6).
 It is a very light-weight form that will help us guide future improvements to the system. 
 Your cooperation is highly appreciated!
 
+The predictions of the model on the standard CaRB set are provided in the outputs folder in the repository.
+
 ## Generating the AACTrans data
 
-To generate AACTrans data from English to say Spanish, the following steps have to be performed:
+To generate AACTrans data from English to say Spanish, the below steps have to be performed. You can use any translation
+system of your choice. In our experiments, we used the fairseq [link](https://github.com/facebookresearch/fairseq/).
 
 Step 1: Train a translation system from English to Spanish using a parallel corpus. Let us call this the Trans_En_Es system.
 
@@ -52,7 +57,7 @@ Step 8: Project the labels from English extraction to the final translated Spani
 python aligner.py --inp1 /path/to/openie_english_labels  --inp2 /path/to/openie_translations --output_file /path/to/openie_translated_labels --alignment_type clp_sentence  --lang lang_id --model_name_or_path /path/to/alignment_model 
 ```
 
-## Using the label project tool 
+## Using the label projection tool 
 
 If you want to project labels from English extraction to a translated extsentence, this command will help!
 
