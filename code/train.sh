@@ -7,7 +7,7 @@ FINETUNE_STEPS=$5
 PRETRAINED_DIR="gs://t5-data/pretrained_models/mt5/base"
 PRETRAINED_STEPS=1000000
 
-if [[ $DEVICE_NAME == gprc* ]] # Can evaluate gen2oie scoring only on TPU
+if [[ $DEVICE_NAME == grpc* ]] # Can evaluate gen2oie scoring only on TPU
 then
   ## need to set project and zone if not running in colab
   #export PROJECT=xxx 
@@ -24,7 +24,7 @@ then
         --gin_param="utils.run.save_checkpoints_steps=2000" \
         --gin_param="utils.tpu_mesh_shape.tpu_topology = 'v3-8'" \
         --gin_param="MIXTURE_NAME = '${TASK}'" \
-        --gin_param="utils.run.sequence_length = {'inputs': 256, 'targets': 128}" \
+        --gin_param="utils.run.sequence_length = {'inputs': 256, 'targets': 256}" \
         --gin_param="utils.run.batch_size=('tokens_per_batch', 24576)" \
         --gin_param="utils.run.train_steps=$((PRETRAINED_STEPS + FINETUNE_STEPS))" \
         --gin_param="utils.run.init_checkpoint='${PRETRAINED_DIR}/model.ckpt-${PRETRAINED_STEPS}'" \

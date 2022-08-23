@@ -63,6 +63,7 @@ def postprocessor(answer, example=None, is_target=False):
 datasets = ['hi_gen2oie_s1_aact_moie', 'hi_gen2oie_s2_aact_moie', 'te_gen2oie_s1_aact_moie', 'te_gen2oie_s2_aact_moie']
 datasets += ['es_gen2oie_s1_aact_moie', 'es_gen2oie_s2_aact_moie', 'pt_gen2oie_s1_aact_moie', 'pt_gen2oie_s2_aact_moie']
 datasets += ['zh_gen2oie_s1_aact_moie', 'zh_gen2oie_s2_aact_moie', 'en_gen2oie_s1', 'en_gen2oie_s2']
+datasets += ['imojie_data', 'genoie_data']
 # datasets += ['pt/mt5/en', 'hi/mt5/en', 'zh/mt5/en', 'te/mt5/en', 'es/mt5/en']
 
 for dataset in datasets:
