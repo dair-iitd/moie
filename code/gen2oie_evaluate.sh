@@ -24,7 +24,7 @@ sed -i 's/<\/arg2>/<\/a2>/' ${OUTPUT}.scores_output_corr_tags
 sed -i 's/<rel>/<r>/' ${OUTPUT}.scores_output_corr_tags
 sed -i 's/<\/rel>/<\/r>/' ${OUTPUT}.scores_output_corr_tags
 
-if [[ $DEVICE_NAME == gprc* ]] # Can evaluate gen2oie scoring only on TPU
+if [[ $DEVICE_NAME == grpc* ]] # Can evaluate gen2oie scoring only on TPU
 then
   bash score.sh ${MODEL_S2} ${DEVICE} ${OUTPUT}.scores_input ${OUTPUT}.scores_output_corr_tags
   paste ${OUTPUT}.scores_input ${OUTPUT}.scores_output ${OUTPUT}.scores_output_corr_tags.scores > ${OUTPUT}.carb

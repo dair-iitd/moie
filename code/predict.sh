@@ -6,9 +6,9 @@ OUTPUT=$4
 TASK=$(basename $MODEL) 
 CHECKPOINT_STEPS=1010000
 
-if [[ $DEVICE_NAME == gprc* ]] # Run on TPU
+if [[ $DEVICE_NAME == grpc* ]] # Run on TPU
 then
-  python -m t5.models.mesh_transformer_main \
+  DATA_DIR="data/" python -m t5.models.mesh_transformer_main \
       --module_import="t5_tasks" \
       --model_dir="${MODEL}" \
       --gin_file="dataset.gin" \
